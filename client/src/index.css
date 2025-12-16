@@ -221,3 +221,6 @@ h3 {
 .heading-text{
   margin-top: 50px;
 }
+.Toastify__toast-container {
+  z-index: 99999 !important;
+}

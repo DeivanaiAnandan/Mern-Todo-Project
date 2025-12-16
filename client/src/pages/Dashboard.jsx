@@ -93,6 +93,9 @@ function Dashboard() {
     }
   }, [todos, location, navigate]);
 
+    useEffect(() => {
+    toast.success("Production toast working 🚀");
+  }, []);
   if (isLoading) return <Spinner />;
   if (isError) return <p style={{ color: "red" }}>{message}</p>;
 
