@@ -19,13 +19,12 @@ export const addTodo = createAsyncThunk(
       console.log("⛔ Backend returned →", res);
       return res.todos;
     } catch (error) {
-
-        const message =
-        error.response?.data?.error ||   // 🔥 FIXED
+      const message =
+        error.response?.data?.error || // 🔥 FIXED
         error.message ||
-        error.toString()
+        error.toString();
 
-      return thunkAPI.rejectWithValue(message)
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
@@ -50,7 +49,7 @@ export const updateTodo = createAsyncThunk(
       return await todoService.updateTodo(id, todoData);
     } catch (error) {
       const message =
-        error.response?.data?.message || error.message || error.toString();
+        error.response?.data?.error || error.message || error.toString();
       return thunkAPI.rejectWithValue(message);
     }
   }

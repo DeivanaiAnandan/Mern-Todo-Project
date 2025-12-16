@@ -91,11 +91,20 @@ export const UpdateTodo = async (req, res) => {
       });
     }
 
-    const todo = await Todo.findById(req.params.id);
-    if (!todo) {
+    const existtodo = await Todo.findById(req.params.id);
+    if (!existtodo) {
       return res.status(400).json({
         success: false,
         error: "Todo not found",
+      });
+    }
+      const { todo, date } = req.body;
+
+    // ✅ ADD THIS
+    if (!todo || !date) {
+      return res.status(400).json({
+        success: false,
+        error: "Task and Date is required",
       });
     }
     const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, {

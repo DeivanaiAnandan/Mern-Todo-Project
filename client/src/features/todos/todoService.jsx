@@ -27,8 +27,18 @@ const createTodo = async (todoData) => {
   }
 };
 const updateTodo = async (id, todoData) => {
-  const response = await axios.put(`${API_URL}${id}`, todoData);
+  try {
+const response = await axios.put(`${API_URL}${id}`, todoData);
   return response.data;
+  } catch (error) {
+    console.error(
+
+    "Error updating todo:",
+      error.response?.data || error.message
+    );
+    throw error;
+  }
+  
 };
 const deleteTodo = async (id) => {
   const response = await axios.delete(API_URL + id);
