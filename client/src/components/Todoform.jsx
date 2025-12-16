@@ -58,35 +58,34 @@ function Todoform() {
   }, [submitted, isSuccess, isError, message, dispatch, navigate, isEditMode]);
 
   const onSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  // 1️⃣ Reset old flags
-  dispatch(reset());
+    // Reset old flags
+    dispatch(reset());
 
-  // 2️⃣ Check if date is in the past
-  const today = new Date();
-  const selectedDate = new Date(formData.date);
+    //  Check if date is in the past
+    const today = new Date();
+    const selectedDate = new Date(formData.date);
 
-  // Remove time for comparison
-  today.setHours(0, 0, 0, 0);
-  selectedDate.setHours(0, 0, 0, 0);
+    // Remove time for comparison
+    today.setHours(0, 0, 0, 0);
+    selectedDate.setHours(0, 0, 0, 0);
 
-  if (selectedDate < today) {
-    toast.error("⚠️ Todo date cannot be in the past!");
-    return; // Stop submission
-  }
+    if (selectedDate < today) {
+      toast.error("⚠️ Todo date cannot be in the past!");
+      return; // Stop submission
+    }
 
-  // 3️⃣ Dispatch appropriate thunk
-  if (isEditMode) {
-    dispatch(updateTodo({ id, todoData: formData }));
-  } else {
-    dispatch(addTodo(formData));
-  }
+    //  Dispatch appropriate thunk
+    if (isEditMode) {
+      dispatch(updateTodo({ id, todoData: formData }));
+    } else {
+      dispatch(addTodo(formData));
+    }
 
-  // 4️⃣ Set submitted flag
-  setSubmitted(true);
-};
-
+    // Set submitted flag
+    setSubmitted(true);
+  };
 
   const onChange = (e) => {
     setFormData({
