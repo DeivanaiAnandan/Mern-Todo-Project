@@ -7,8 +7,9 @@ import Todoform from "./components/Todoform";
 function App() {
   return (
     <div className="App">
+       <ToastContainer position="top-right" autoClose={5000} />
       <Router>
-        <ToastContainer position="top-right" autoClose={5000} />
+       
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/addtodo" element={<Todoform />} />
